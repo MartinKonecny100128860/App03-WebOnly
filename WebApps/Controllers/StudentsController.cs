@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApps.Data;
 using WebApps.Models;
+using ConsoleAppProject.App03;
 
 namespace WebApps.Controllers
 {
@@ -23,6 +24,29 @@ namespace WebApps.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Students.ToListAsync());
+        }
+
+        public async Task<IActionResult> Analyse()
+        {
+            var students = await _context.Students.ToListAsync();
+            StudentGrades grades = new StudentGrades();
+
+            grades.Students = new string[students.Count];
+            grades.Marks = new int[students.Count];
+
+            int index = 0;
+
+            foreach (Student student in students)
+            {
+                grades.Students[index] = student.Name;
+                grades.Marks[index] = student.Mark;
+                index++;
+            }
+
+            grades.CalculateStats();
+            grades.CalculateGradeProfile();
+
+            return View(grades);
         }
 
         // GET: Students/Details/5

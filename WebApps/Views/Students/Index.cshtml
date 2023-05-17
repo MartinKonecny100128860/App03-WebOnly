@@ -1,13 +1,23 @@
-﻿@model IEnumerable<WebApps.Models.Student>
+﻿<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+
+@model IEnumerable<WebApps.Models.Student>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<header class="text-center jumbotron justify-content-center">
+    <h1 class="display-4"> STUDENTS LIST </h1>
+    <h2> By. Martin Konecny </h2>
+</header>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" button type="button" class="btn">Create New</a>
+    <a asp-action="Analyse" button type="button" class="btn">Analyse Grades</a>
 </p>
 <table class="table">
     <thead>
@@ -31,9 +41,9 @@
                 @Html.DisplayFor(modelItem => item.Mark)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+                <a button type="button" class="btn" asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
+                <a button type="button" class="btn"  asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
+                <a button type="button" class="btn" asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
             </td>
         </tr>
 }
