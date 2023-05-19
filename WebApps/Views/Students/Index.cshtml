@@ -28,6 +28,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Mark)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -40,6 +44,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Mark)
             </td>
+                <td>
+                    @{
+                        if (item.Mark >= 70)
+                            item.Grade = "A";
+                        else if (item.Mark >= 60)
+                            item.Grade = "B";
+                        else if (item.Mark >= 50)
+                            item.Grade = "C";
+                        else if (item.Mark >= 40)
+                            item.Grade = "D";
+                        else
+                            item.Grade = "F";
+                    }
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
             <td>
                 <a button type="button" class="btn" asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
                 <a button type="button" class="btn"  asp-action="Details" asp-route-id="@item.StudentId">Details</a> |

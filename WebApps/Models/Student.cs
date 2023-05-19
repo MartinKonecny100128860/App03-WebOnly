@@ -12,6 +12,8 @@ namespace WebApps.Models
 
         [Range(0, 100)]
         public int Mark { get; set; }
+
+        public string Grade { get; set; }
     }
 }
 
